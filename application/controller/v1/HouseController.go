@@ -2,7 +2,6 @@ package v1
 
 import (
 	"backend-go-2/domain/usecases/house"
-	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
 	"net/http"
@@ -11,18 +10,9 @@ import (
 func handleGetHouse(writer http.ResponseWriter, request *http.Request) {
 	var houseResponse = house.ExecuteGetHouseUseCase()
 
-	jsonResponse, err := json.Marshal(&houseResponse)
-
+	err := SendJSONResponse(writer, houseResponse)
 	if err != nil {
-		fmt.Println("Error occurred while creating JSON response: ", err)
-		return // TODO: send error response
-	}
-
-	writer.Header().Set("Content-Type", "application/json")
-
-	_, err = writer.Write(jsonResponse)
-	if err != nil {
-		fmt.Println("Error occurred while sending response: ", err)
+		fmt.Println("ERROR: ", err)
 	}
 }
 
