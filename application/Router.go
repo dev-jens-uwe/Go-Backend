@@ -9,5 +9,7 @@ func GetRouter() *mux.Router {
 	var router = mux.NewRouter()
 
 	v1.AddAuthenticationHandler(router)
+	v1.AddHouseHandler(router)
+
 	return router
 }

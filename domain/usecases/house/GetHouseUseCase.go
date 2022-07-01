@@ -1,6 +1,8 @@
 package house
 
-import "backend-go-2/application/domain/model"
+import (
+	"backend-go-2/domain/model"
+)
 
 func ExecuteGetHouseUseCase() model.House {
 	var house = model.House{
